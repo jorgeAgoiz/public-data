@@ -1,0 +1,23 @@
+export const districts: Array<string> = [
+	'arganzuela',
+	'barajas',
+	'carabanchel',
+	'centro',
+	'chamartin',
+	'chamberi',
+	'ciudad lineal',
+	'fuencarral-el pardo',
+	'hortaleza',
+	'latina',
+	'moncloa-aravaca',
+	'moratalaz',
+	'puente de vallecas',
+	'retiro',
+	'salamanca',
+	'san blas-canillejas',
+	'tetuan',
+	'usera',
+	'vicalvaro',
+	'villa de vallecas',
+	'villaverde'
+];
