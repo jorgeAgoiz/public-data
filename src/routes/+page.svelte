@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { districts } from '../utils/constants';
+	import { categories } from '../utils/constants';
+	let selectedCategory: number = 21;
 
-	let selectedDistrict: string = 'arganzuela';
-
-	$: selectedValue = selectedDistrict.toUpperCase();
-
-	function handleChange() {
-		console.log({ selectedDistrict, selectedValue });
+	async function handleChange() {
+		console.log('changing');
 	}
 </script>
 
@@ -14,16 +11,15 @@
 	<section>
 		<h2>Seleccionar un distrito</h2>
 		<div class="container">
-			<select name="District" bind:value={selectedDistrict} on:change={handleChange}>
-				{#each districts as option}
-					<option value={option}>{option.toUpperCase()}</option>
+			<select name="District" bind:value={selectedCategory} on:change={handleChange}>
+				{#each categories as option}
+					<option value={option.id}>{option.name.toUpperCase()}</option>
 				{/each}
 			</select>
-			<div class="container__selected">
-				<h1>Opción seleccionada: {selectedValue}</h1>
-			</div>
+			<h2>{selectedCategory}</h2>
 		</div>
 	</section>
+	<section />
 </main>
 
 <style>
