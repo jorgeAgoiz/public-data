@@ -11,5 +11,6 @@
 	:global(body) {
 		margin: 0;
 		box-sizing: border-box;
+		background-color: var(--color-beige);
 	}
 </style>

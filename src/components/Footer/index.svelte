@@ -11,6 +11,8 @@
 		bottom: 0;
 		width: 100%;
 		height: 100px;
-		background-color: darksalmon;
+		background-color: var(--color-teal);
+		text-align: center;
+		border-top: 3px solid black;
 	}
 </style>

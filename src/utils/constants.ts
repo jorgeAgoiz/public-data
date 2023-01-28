@@ -1,8 +1,3 @@
-interface Category {
-	name: string;
-	id: number;
-}
-
 export const categories: Array<Category> = [
 	{
 		name: 'Sports',

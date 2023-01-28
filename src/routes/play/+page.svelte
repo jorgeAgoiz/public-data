@@ -1,7 +1,4 @@
 <script>
-	fetch('https://opentdb.com/api.php?amount=10')
-		.then((result) => result.json())
-		.then((data) => console.log(data));
 </script>
 
 <main>
