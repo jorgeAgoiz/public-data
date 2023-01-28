@@ -16,7 +16,7 @@
 	<section>
 		<h2>Select category:</h2>
 		<InputSelect {categories} {selectedCategory} on:change={handleChange} />
-		<BasicButton variant="basic" text="Comenzar" type="button" on:click={() => goto('/play')} />
+		<BasicButton text="Comenzar" type="button" on:click={() => goto(`/play/${selectedCategory}`)} />
 		<h1>Category selected: {categories[selectedOption].name}</h1>
 	</section>
 </main>
