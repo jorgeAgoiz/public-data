@@ -22,12 +22,6 @@
 </main>
 
 <style>
-	:global(:root) {
-		--color-green: #c6d57e;
-		--color-red: #d57e7e;
-		--color-teal: #a2cdcd;
-		--color-beige: #ffe1af;
-	}
 	main {
 		width: 100%;
 		height: 72vh;

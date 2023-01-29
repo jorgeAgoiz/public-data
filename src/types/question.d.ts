@@ -5,4 +5,5 @@ export interface Question {
 	question: string;
 	correct_answer: string;
 	incorrect_answers: Array<string>;
+	all_answers?: Array<string>;
 }
