@@ -1,20 +1,27 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
+	import { createEventDispatcher } from 'svelte';
 	export let title: string;
 	export let answers: Array<string> | undefined;
-	export let correctAnswer: string;
+
+	const dispatch = createEventDispatcher();
+
+	function handleClick(
+		event: MouseEvent & {
+			currentTarget: EventTarget & HTMLButtonElement;
+		}
+	) {
+		dispatch('check-option', { value: event.currentTarget.innerText });
+	}
 </script>
 
 <article>
-	{#if browser}
-		<h1>{decodeURIComponent(escape(window.atob(title)))}</h1>
-	{/if}
+	<h1>{title}</h1>
 	<section>
 		{#if answers}
 			{#each answers as option}
-				{#if browser}
-					<p>{decodeURIComponent(escape(window.atob(option)))}</p>
-				{/if}
+				<button on:click={handleClick}>
+					{option}
+				</button>
 			{/each}
 		{/if}
 	</section>
