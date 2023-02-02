@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import { onDestroy } from 'svelte';
+	import type { Unsubscriber } from 'svelte/store';
 	import QuestionCard from '../../../components/QuestionCard/question-card.svelte';
 	import { points } from '../../../stores/points';
 	import type { Question } from '../../../types/question';
+	import { questionsParser } from '../../../utils/questionsParser';
 
 	export let data;
 	let questions: Array<Question> = [];
@@ -11,20 +14,13 @@
 
 	let counterPoints: number = 0;
 	$: showPoints = counterPoints;
-	points.subscribe((value) => {
+	const unsubscribe: Unsubscriber = points.subscribe((value) => {
 		counterPoints = value;
 	});
+	onDestroy(unsubscribe);
 
 	if (browser) {
-		questions = data.questions.results.map((elem: Question) => {
-			const allOptions = [...elem.incorrect_answers, elem.correct_answer];
-			elem.all_answers = allOptions.map((option) => {
-				return decodeURIComponent(escape(window.atob(option)));
-			});
-			elem.question = decodeURIComponent(escape(window.atob(elem.question)));
-			elem.correct_answer = decodeURIComponent(escape(window.atob(elem.correct_answer)));
-			return elem;
-		});
+		questions = questionsParser({ data: data.questions.results });
 	}
 
 	function handleClick(event: CustomEvent<any>): void {

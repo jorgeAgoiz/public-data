@@ -16,7 +16,11 @@
 	<section>
 		<h2>Select category:</h2>
 		<InputSelect {categories} {selectedCategory} on:change={handleChange} />
-		<BasicButton text="Comenzar" type="button" on:click={() => goto(`/play/${selectedCategory}`)} />
+		<BasicButton
+			text="Comenzar"
+			type="button"
+			on:click={() => goto(`/category/${selectedCategory}`)}
+		/>
 		<h1>Category selected: {categories[selectedOption].name}</h1>
 	</section>
 </main>
