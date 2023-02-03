@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 	import { onDestroy } from 'svelte';
 	import type { Unsubscriber } from 'svelte/store';
 	import QuestionCard from '../../../components/QuestionCard/question-card.svelte';
+	import ScoreBoard from '../../../components/ScoreBoard/score-board.svelte';
 	import { points } from '../../../stores/points';
 	import type { Question } from '../../../types/question';
 	import { questionsParser } from '../../../utils/questionsParser';
@@ -24,8 +26,12 @@
 	}
 
 	function handleClick(event: CustomEvent<any>): void {
-		const selected = event.detail.value;
-		const correct = questions[round].correct_answer;
+		if (round >= 9) {
+			goto('/');
+		}
+
+		const selected: string = event.detail.value;
+		const correct: string = questions[round].correct_answer;
 
 		if (selected == correct) {
 			points.update((n) => n + 1);
@@ -36,7 +42,6 @@
 
 <main>
 	<h1>Topic {category}</h1>
-	<h3>{showPoints}</h3>
 	{#if round < 10 && questions.length > 0}
 		<QuestionCard
 			title={questions[round].question}
@@ -44,9 +49,11 @@
 			on:check-option={handleClick}
 		/>
 	{/if}
+	{#if browser}
+		<ScoreBoard points={showPoints} />
+	{/if}
 </main>
 
-<!-- decodeURIComponent(escape(window.atob(question.question))) -->
 <style>
 	main {
 		width: 100%;

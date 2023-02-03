@@ -3,7 +3,7 @@
 	export let selectedCategory: number;
 </script>
 
-<select name="District" value={selectedCategory} on:change>
+<select name="Categories" value={selectedCategory} on:change>
 	{#each categories as option}
 		<option value={option.id}>{option.name.toUpperCase()}</option>
 	{/each}

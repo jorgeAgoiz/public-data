@@ -1,16 +1,13 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import BasicButton from '../BasicButton/index.svelte';
 	export let title: string;
 	export let answers: Array<string> | undefined;
 
 	const dispatch = createEventDispatcher();
 
-	function handleClick(
-		event: MouseEvent & {
-			currentTarget: EventTarget & HTMLButtonElement;
-		}
-	) {
-		dispatch('check-option', { value: event.currentTarget.innerText });
+	function handleClick(event: any) {
+		dispatch('check-option', { value: event.currentTarget?.innerText });
 	}
 </script>
 
@@ -19,9 +16,7 @@
 	<section>
 		{#if answers}
 			{#each answers as option}
-				<button on:click={handleClick}>
-					{option}
-				</button>
+				<BasicButton type="button" text={option} on:click={handleClick} />
 			{/each}
 		{/if}
 	</section>
@@ -30,12 +25,14 @@
 <style>
 	article {
 		width: 80%;
-		background-color: var(--color-green);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		border: 2px solid black;
+	}
+	h1 {
+		font-size: 2.4rem;
+		margin-bottom: 3rem;
 	}
 	section {
 		width: 100%;
